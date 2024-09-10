@@ -66,6 +66,12 @@
             <scope>test</scope>
         </dependency>
 
+        <!--RestTemplate Http请求-->
+        <dependency>
+            <groupId>love.forte.simple-robot.http</groupId>
+            <artifactId>client-restTemplate</artifactId>
+            <version>2.4.0</version>
+        </dependency>
         <!--        jwt令牌相关依赖-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>

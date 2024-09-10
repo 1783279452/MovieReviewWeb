@@ -19,6 +19,7 @@ public class UserController {
 
     @PostMapping("/user")//添加用户
     public Result adduser(@RequestBody User user){
+
         log.info("控制层-添加用户-user：" + user);
         return userService.adduser(user);
     }
@@ -29,13 +30,13 @@ public class UserController {
         return Result.success(list);
     }
 
-    @GetMapping("/user/{id}")//查询用户-通过用户id
+    @GetMapping("/user/{id}")//查询用户-前端发送用户id
     public Result getuser(@PathVariable Integer id){
         return userService.getuser(id);
     }
 
 
-    @DeleteMapping("/user/{id}")//删除用户-通过用户id
+    @DeleteMapping("/user/{id}")//删除用户-前端发送用户id
     public Result deleuser(@PathVariable Integer id){
         return userService.deleuser(id);
     }
@@ -55,5 +56,11 @@ public class UserController {
     public Result updauser(@RequestBody User user){
         return Result.success();
     }
+
+    @GetMapping("https://api.vvhan.com/api/text/joke?type=json")
+    public void ces1(@PathVariable String abc){
+        log.info("返回信息为：" + abc);
+    }
+
 
 }
