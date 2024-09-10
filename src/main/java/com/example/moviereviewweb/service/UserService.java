@@ -8,8 +8,8 @@ import java.util.List;
 
 @Service//用户模块
 public interface UserService {
-    Result adduser(User user);//添加用户
 
+    Result adduser(User user);//添加用户
 
     List<User> getalluser();//查询全部用户
 
