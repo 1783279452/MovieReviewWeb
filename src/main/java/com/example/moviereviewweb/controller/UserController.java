@@ -57,10 +57,6 @@ public class UserController {
         return Result.success();
     }
 
-    @GetMapping("https://api.vvhan.com/api/text/joke?type=json")
-    public void ces1(@PathVariable String abc){
-        log.info("返回信息为：" + abc);
-    }
 
 
 }
