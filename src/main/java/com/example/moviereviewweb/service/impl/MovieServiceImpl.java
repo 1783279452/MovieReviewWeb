@@ -22,13 +22,23 @@ public class MovieServiceImpl implements MovieService {
         return Result.success();
     }
 
+    //删除电影————接受电影id
+    public Result deleteMovie(Integer id){
+        if (IsMovieById(id) == true){
+            movieMapper.deletemovie(id);
+            return Result.success();
+        }
+        return Result.error("删除失败，不存在此电影：" + id);
+
+    }
+
     //查询是否存在电影——发送电影id
     public Boolean IsMovieById(Integer id){
         int Number = movieMapper.getMovieById(id);
-        if (Number >= 1){
+        if (Number >= 1){//存在
             return true;
         }
-        return false;
+        return false;//不存在
     }
 
 

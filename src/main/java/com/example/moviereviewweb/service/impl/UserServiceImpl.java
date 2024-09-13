@@ -4,11 +4,14 @@ import com.example.moviereviewweb.Bean.Result;
 import com.example.moviereviewweb.Bean.User;
 import com.example.moviereviewweb.mapper.UserMapper;
 import com.example.moviereviewweb.service.UserService;
+import com.example.moviereviewweb.utils.JwtUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -33,6 +36,7 @@ public class UserServiceImpl implements UserService {
             return Result.error("失败，账号不能为空");
         }
         user.setCreateTime(LocalDateTime.now());
+        user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));//密码md5加密
         userMapper.adduser(user);
         return Result.success("成功");
     }
@@ -59,6 +63,27 @@ public class UserServiceImpl implements UserService {
         }
         User user = userMapper.getuser(id);
         return Result.success(user);
+    }
+
+    @Override
+    public Result login(User user) {//登录
+
+        User user1 = userMapper.login(user);
+
+        /*生成jwt令牌，并返回前端（如果调用mapper方法判断账号密码存在 登录成功的话）*/
+        if (user1 != null){
+            HashMap<String, Object> map1 = new HashMap<>();
+//            Map<String, Object> map1 = new HashMap<>();
+            map1.put("id",user.getUID());
+            map1.put("name",user.getName());
+            map1.put("username",user.getUsername());
+            String jwtNum = JwtUtils.generateJwt(map1);
+            /*调用jwt工具类，往里传递map集合，该集合包括要生成的员工的信息,然后借此信息生成jwt令牌*/
+            return Result.success(jwtNum);
+        }else {
+            return Result.error("用户名或密码错误");
+        }
+
     }
 
     /*以下为异常逻辑处理*/

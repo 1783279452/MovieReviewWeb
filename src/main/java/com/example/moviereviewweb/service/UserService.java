@@ -16,4 +16,6 @@ public interface UserService {
     Result deleuser(Integer id);//删除用户
 
     Result getuser(Integer id);//查询用户
+
+    Result login(User user);
 }

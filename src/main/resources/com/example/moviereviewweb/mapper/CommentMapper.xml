@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--        namespace后跟要接管的接口引用地址-->
+
+<mapper namespace="com.example.moviereviewweb.mapper.CommentMapper">
+
+
+    <update id="updateComment"  >
+        update comment
+        <set>
+            <if test="content != null and content != '' ">
+                content = #{content},
+            </if>
+            <if test="score != null and score != '' ">
+                score = #{score}
+            </if>
+        </set>
+        where eid = #{EID}
+    </update>
+
+</mapper>
+
+

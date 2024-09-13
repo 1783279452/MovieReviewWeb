@@ -11,24 +11,27 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    @Insert("insert into moviereviewweb_database.user (uid, username, password, name, avatarurl, phonenumber, gender, create_time) " +
-            "VALUE (#{UID},#{username},#{password},#{name},#{avatarUrl},#{phoneNumber},#{gender},#{createTime})")
+    @Insert("insert into user (uid, username, password, name, avatarurl, phonenumber, gender, create_time, statu) " +
+            "VALUE (#{UID},#{username},#{password},#{name},#{avatarUrl},#{phoneNumber},#{gender},#{createTime},#{statu})")
     void adduser(User user);
 
-    @Select("select uid, username, password, name, avatarurl, phonenumber, gender, create_time createTime from moviereviewweb_database.user ")
+    @Select("select uid, username, password, name, avatarurl, phonenumber, gender, create_time, statu createTime from user ")
     List<User> getalluser();
 
-    @Delete("delete from moviereviewweb_database.user where uid = #{id}")
+    @Delete("delete from user where uid = #{id}")
     void deleuser(Integer id);
 
 
-    @Select("select count(*) from moviereviewweb_database.user where username = #{username}")
+    @Select("select count(*) from user where username = #{username}")
     int isUsername(String username);
 
 
-    @Select("select uid, username, password, name, avatarurl, phonenumber, gender, create_time createTime from moviereviewweb_database.user where uid = #{id}")
+    @Select("select uid, username, password, name, avatarurl, phonenumber, gender, create_time createTime, statu from user where uid = #{id}")
     User getuser(Integer id);
 
-    @Select("select count(*) from moviereviewweb_database.user where uid = #{id}")
+    @Select("select count(*) from user where uid = #{id}")
     int isUid(Integer id);
+
+    @Select("select username , password from user where username =#{username} and password = #{password}")
+    User login(User user);
 }
