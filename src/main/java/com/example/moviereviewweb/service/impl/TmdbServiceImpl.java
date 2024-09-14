@@ -39,6 +39,8 @@ public class TmdbServiceImpl implements TmdbService {//TMDB搜索数据处理
     private static final String MovieSearch = "search/movie?";//电影搜索
     private static final String TvSearch = "search/tv?";//电视剧TV搜索
     private static final String TMDB_APIkey = "api_key=d3459ceb989dbc69c664097b38e0c1ae";//tmdb key
+    private static final String TMDB_APIkey2 = "api_key=2b43db98ecabe3ad71c5cf9d236a93f9";
+    //2b43db98ecabe3ad71c5cf9d236a93f9
     private static final String Language = "&language=zh-CN";//语言
     private static final String TMDB_HotMovies = "https://api.themoviedb.org/3/movie/popular?api_key=";//当前所有热门电影
 
@@ -147,7 +149,7 @@ public class TmdbServiceImpl implements TmdbService {//TMDB搜索数据处理
     //聚合搜索  原始版本备份
     /*public List<Movie> getMultiMovie(String data){
         String SerachData = data;
-        String url = TMDB_Http + MultiSearch +TMDB_APIkey + "&query=" +SerachData + Language;
+        String url = TMDB_Http + MultiSearch +TMDB_APIkey2 + "&query=" +SerachData + Language;
         log.info("url="+url);
         String HTTPinfo = restTemplate.getForObject(url, String.class);//发送http请求并封装返回数据
 

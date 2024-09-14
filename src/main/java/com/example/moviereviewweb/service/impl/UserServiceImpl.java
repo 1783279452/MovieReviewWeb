@@ -80,6 +80,7 @@ public class UserServiceImpl implements UserService {
             String jwtNum = JwtUtils.generateJwt(map1);
             /*调用jwt工具类，往里传递map集合，该集合包括要生成的员工的信息,然后借此信息生成jwt令牌*/
             return Result.success(jwtNum);
+
         }else {
             return Result.error("用户名或密码错误");
         }
