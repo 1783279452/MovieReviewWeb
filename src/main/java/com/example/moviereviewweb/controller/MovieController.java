@@ -16,7 +16,7 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    @GetMapping("/deletemovie/{id}")//删除电影————接收电影id
+    @GetMapping("/movie/delete/{id}")//删除电影————接收电影id
     public Result deleteMovie(@PathVariable Integer id) {
 
         return movieService.deleteMovie(id);

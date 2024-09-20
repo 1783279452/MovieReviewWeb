@@ -11,4 +11,6 @@ public interface CommentService {
     Result deletecomment(Integer id);//删除评价 --接收评价id
 
     Result updateComment(Comment comment);//更新评价  --接收评价对象
+
+    Result deleteByMovieId(Integer id);
 }

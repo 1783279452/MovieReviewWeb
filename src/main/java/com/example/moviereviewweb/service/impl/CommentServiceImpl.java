@@ -22,7 +22,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override//添加评价
     public Result addComment(Comment comment) {
-        if (isCommentByMovieId(comment.getCommentMID()) == false){
+        if (isCommentByMovieId(comment.getCommentMID() , comment.getCommentUID()) == false){
             comment.setTime(LocalDateTime.now());
             commentMapper.addComment(comment);
             return Result.success();
@@ -43,9 +43,18 @@ public class CommentServiceImpl implements CommentService {
         return Result.success();
     }
 
+    @Override//删除评价，接收电影id
+    public Result deleteByMovieId(Integer id) {
+        int i = commentMapper.deleteByMovieId(id);
+        if (i > 0){
+            return Result.success("删除成功，已删除:" + i +"条");
+        }
+        return Result.error("删除失败");
+    }
+
     //是否存在相同电影的评价 -- 接收电影id
-    public boolean isCommentByMovieId(Integer id){
-        int number = commentMapper.getCommentByMovieId(id);
+    public boolean isCommentByMovieId(Integer mid , Integer uid){
+        int number = commentMapper.getCommentByMovieId(mid , uid);
         if (number >= 1){
             return true;
         }

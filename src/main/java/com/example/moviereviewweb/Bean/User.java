@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {//用户类
+public class User {//用户类 ————ps 前端传进的数据请和数据库字段相同
     private Integer UID;//用户id
     private String username;//账号
     private String password;//密码

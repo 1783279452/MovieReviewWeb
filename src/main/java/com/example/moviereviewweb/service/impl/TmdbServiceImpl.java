@@ -1,6 +1,7 @@
 package com.example.moviereviewweb.service.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,6 +10,7 @@ import com.example.moviereviewweb.Bean.Movie;
 import com.example.moviereviewweb.Bean.TV;
 import com.example.moviereviewweb.service.MovieService;
 import com.example.moviereviewweb.service.TmdbService;
+import com.example.moviereviewweb.service.TvService;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,8 @@ import org.springframework.web.client.RestTemplate;
 @Slf4j
 public class TmdbServiceImpl implements TmdbService {//TMDB搜索数据处理
 
+    @Autowired
+    private TvService tvService;
     @Autowired
     private MovieService movieService;
 
@@ -43,6 +47,9 @@ public class TmdbServiceImpl implements TmdbService {//TMDB搜索数据处理
     private static final String TMDB_HotMovies = "https://api.themoviedb.org/3/movie/popular?api_key=";//当前所有热门电影
 
     //&query=你想的影视名字
+/*  tmdb图像：https://image.tmdb.org/t/p/w500/8Qryzfgt2rL9mHBj07XIXNLnvnp.jpg，支持w300、w500、w780、w1280
+    图像原始尺寸https://image.tmdb.org/t/p/original/   */
+
 
     //聚合搜索，分类识别电影、电视剧
     public List<Object> getMultiSearchResults(String data) {
@@ -102,22 +109,27 @@ public class TmdbServiceImpl implements TmdbService {//TMDB搜索数据处理
                     movie.setName(title);
                     movie.setImgUrl(posterPath);
                     movie.setReleaseTime(releaseDate);
-                    movie.setType(genres);
+                    //movie.setType(genres);
                     movie.setM_score(Float.valueOf(voteAverage));
                     movie.setLanguage(language);
                     movie.setSummary(overview);
+
+                    if (genres != null){//取类型前三种
+                        // 将字符串按逗号分割
+                        String[] genreArray = genres.split(",");
+                        // 获取前三个类型，如果不足三个，则取所有
+                        String limitedGenres = String.join(",", Arrays.copyOfRange(genreArray, 0, Math.min(3, genreArray.length)));
+                        movie.setType(limitedGenres);
+                    }
 
                     resultList.add(movie);
                     log.info("电影信息：" + movie);
 
                     //TODO
-
                     if (movieService.IsMovieById(Integer.valueOf(id)) == false){
                         movieService.addMovie(movie);
-                        log.info("添加进数据库");
+                        log.info("添加电影进数据库");
                     }
-
-
                 }
 
                 // 如果是电视剧
@@ -130,13 +142,27 @@ public class TmdbServiceImpl implements TmdbService {//TMDB搜索数据处理
                     tv.setName(name);
                     tv.setImgUrl(posterPath);
                     tv.setReleaseTime(firstAirDate);
-                    tv.setType(genres);
+                    //tv.setType(genres);
                     tv.setT_score(Float.valueOf(voteAverage));
                     tv.setLanguage(language);
                     tv.setSummary(overview);
 
+                    if (genres != null){//取类型前三种
+                        // 将字符串按逗号分割
+                        String[] genreArray = genres.split(",");
+                        // 获取前三个类型，如果不足三个，则取所有
+                        String limitedGenres = String.join(",", Arrays.copyOfRange(genreArray, 0, Math.min(3, genreArray.length)));
+                        tv.setType(limitedGenres);
+                    }
+
+
                     resultList.add(tv);
                     log.info("电视剧信息：" + tv);
+
+                    if (tvService.IsTvById(Integer.valueOf(id)) == false){
+                        tvService.addTv(tv);
+                        log.info("添加电视剧进数据库" + tv);
+                    }
                 }
             }
         }

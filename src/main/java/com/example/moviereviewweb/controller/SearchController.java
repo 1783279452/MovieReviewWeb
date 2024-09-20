@@ -15,10 +15,10 @@ public class SearchController {
     @Autowired
     private TmdbService tmdbService;
 
-    @GetMapping("/MultiMovie/{searchdata}")//聚合搜索（电视剧电影等多渠道搜索） 前端发送搜索名字
-    public Result test1(@PathVariable String searchdata){
+    @GetMapping("/search/{data}")//聚合搜索（电视剧电影等多渠道搜索） 前端发送搜索名字
+    public Result test1(@PathVariable String data){
 
-        return Result.success(tmdbService.getMultiSearchResults(searchdata));
+        return Result.success(tmdbService.getMultiSearchResults(data));
     }
 
 }

@@ -4,7 +4,7 @@ import com.example.moviereviewweb.Bean.Movie;
 import com.example.moviereviewweb.Bean.Result;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service//电视剧模块
 public interface MovieService {
 
     Result addMovie(Movie movie);//添加电影

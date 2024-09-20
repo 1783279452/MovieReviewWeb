@@ -25,7 +25,7 @@ public class LoginController {
         return userService.adduser(user);
     }
 
-    @PostMapping("login")//登录及权限校验功能
+    @PostMapping("/login")//登录及权限校验功能
     public Result login(@RequestBody User user){
 //        对前端传来的密码进行md5加密 再查询
         String password = user.getPassword();
