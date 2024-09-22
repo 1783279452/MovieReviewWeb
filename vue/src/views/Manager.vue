@@ -30,6 +30,10 @@
               <el-icon><Menu /></el-icon>
               <span>信息管理</span>
             </template>
+            <el-menu-item index="/category">
+              <el-icon><Grid /></el-icon>
+              <span>电影分类信息</span>
+            </el-menu-item>
             <el-menu-item index="/notice">
               <el-icon><Bell /></el-icon>
               <span>公告信息</span>

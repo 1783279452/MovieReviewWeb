@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.moviereviewweb.mapper.CategoryMapper">
+    <insert id="insert" parameterType="com.example.moviereviewweb.Bean.Category">
+          insert into category(name) values (#{name})
+    </insert>
+    <update id="updateById"  parameterType="com.example.moviereviewweb.Bean.Category">
+        update category set name = #{name}
+        where id = #{id}
+    </update>
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from category where id =#{id}
+    </delete>
+    <select id="selectAll" resultType="com.example.moviereviewweb.Bean.Category">
+        select * from category
+        <where>
+            <if test="name !=null">and name like contact('%',#{name},'%')</if>
+        </where>
+        order by id desc
+    </select>
+</mapper>

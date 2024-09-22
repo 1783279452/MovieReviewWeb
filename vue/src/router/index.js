@@ -13,6 +13,7 @@ const router = createRouter({
         { path: 'home', component: () => import('@/views/manager/Home.vue')},
         { path: 'admin', component: () => import('@/views/manager/Admin.vue')},
         { path: 'notice', component: () => import('@/views/manager/Notice.vue')},
+        { path: 'category', component: () => import('@/views/manager/Category.vue')},
       ]
     },
     { path: '/login', component: () => import('@/views/Login.vue')},
