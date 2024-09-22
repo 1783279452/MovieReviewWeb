@@ -1,6 +1,6 @@
 package com.example.moviereviewweb.controller;
 
-import com.example.moviereviewweb.Bean.Category;
+import com.example.moviereviewweb.entity.Category;
 import com.example.moviereviewweb.Bean.Result;
 import com.example.moviereviewweb.service.CategoryService;
 import com.github.pagehelper.PageInfo;

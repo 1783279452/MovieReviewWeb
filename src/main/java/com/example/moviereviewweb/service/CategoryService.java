@@ -1,7 +1,7 @@
 package com.example.moviereviewweb.service;
 
 
-import com.example.moviereviewweb.Bean.Category;
+import com.example.moviereviewweb.entity.Category;
 import com.example.moviereviewweb.mapper.CategoryMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

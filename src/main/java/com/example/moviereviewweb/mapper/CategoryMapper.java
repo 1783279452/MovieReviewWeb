@@ -1,6 +1,6 @@
 package com.example.moviereviewweb.mapper;
 
-import com.example.moviereviewweb.Bean.Category;
+import com.example.moviereviewweb.entity.Category;
 
 import java.util.List;
 

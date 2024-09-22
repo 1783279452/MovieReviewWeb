@@ -8,7 +8,18 @@
      <div class="card" style="margin-bottom: 5px">
        <el-button type="primary" style="margin-bottom: 10px" @click="handleAdd">新增</el-button>
        <el-table :data="data.tableData" stripe>
-         <el-table-column prop="name" label="名称" width="180" />
+         <el-table-column prop="MID" label="电影id" width="180" />
+         <el-table-column prop="Name" label="名称" width="180" />
+         <el-table-column prop="imgUrl" label="图片" width="180">
+         <template #default="scope">
+           <el-image :src="scope.row.imgUrl" style="width: 40px; height: 40px; border-radius: 5px" :preview-src-list="[scope.row.imgUrl]" preview-teleported></el-image>
+         </template>
+         </el-table-column>
+         <el-table-column prop="ReleaseTime" label="上映年份" width="180" />
+         <el-table-column prop="type" label="类型" width="180" />
+         <el-table-column prop="M_score" label="评分" width="180" />
+         <el-table-column prop="language" label="放映语言" width="180" />
+         <el-table-column prop="summary" label="简介" width="180" show-overflow-toolip/>
          <el-table-column label="操作" width="160">
            <template #default="scope">
              <el-button type="primary"  @click="handleEdit(scope.row)">编辑</el-button>
@@ -21,10 +32,30 @@
        <el-pagination background layout="total,prev, pager, next" v-model:current-page="data.pageNum" v-model:page-size="data.pageSize"
                       :total="data.total" @current-change="load" />
      </div>
-     <el-dialog v-model="data.formVisible" title="电影分类" width="40%">
+     <el-dialog v-model="data.formVisible" title="电影信息" width="40%">
        <el-form :model="data.form" label-width="80px" style="padding-right:20px">
          <el-form-item label="名称">
            <el-input v-model="data.form.name" autocomplete="off" placeholder="请输入名称" />
+         </el-form-item>
+         <el-form-item label="图片" prop="imgUrl">
+           <el-upload :action="uploadUrl" list-type="picture" :on-success="handleImgSuccess">
+             <el-button type="primary">上传图片</el-button>
+           </el-upload>
+         </el-form-item>
+         <el-form-item label="上映年份">
+           <el-date-picker style="width: 100%" type="date" v-model="data.form.ReleaseTime" autocomplete="off" placeholder="请输入上映年份" format="YYYY-MM-DD" value-foemat="YYYY-MM-DD" />
+         </el-form-item>
+         <el-form-item label="类型">
+           <el-input v-model="data.form.type" autocomplete="off" placeholder="请输入类型" />
+         </el-form-item>
+         <el-form-item label="评分">
+           <el-input v-model="data.form.M_score" autocomplete="off" placeholder="请输入评分" />
+         </el-form-item>
+         <el-form-item label="放映语言">
+           <el-input v-model="data.form.language" autocomplete="off" placeholder="请输入放映语言" />
+         </el-form-item>
+         <el-form-item label="简介">
+           <el-input rows="5" v-model="data.form.summary" autocomplete="off" placeholder="请输入简介" />
          </el-form-item>
        </el-form>
        <template #footer>
@@ -40,6 +71,9 @@
  import {reactive} from "vue";
  import request from "@/utils/request";
  import {ElMessage, ElMessageBox} from "element-plus";
+ // 文件上传的接口地址
+ const uploadUrl = import.meta.env.VITE_BASE_URL + '/files/upload'
+
  const data = reactive({
    tableData: [ ],
    total:0,
@@ -52,7 +86,7 @@
  )
 
  const load =() =>{
-   request.get('/category/selectPage',{
+   request.get('/movie/selectPage',{
      params :{
        pageNum:data.pageNum,
        pageSize:data.pageSize,
@@ -74,7 +108,7 @@ load()
    data.formVisible= true
  }
  const add=() =>{
-     request.post('/category/add',data.form).then(res =>{
+     request.post('/movie/add',data.form).then(res =>{
        if (res.code === '200'){
          load()
          data.formVisible = false
@@ -90,7 +124,7 @@ load()
    data.formVisible= true
  }
  const update=() =>{
-   request.put('/category/update',data.form).then (res =>{
+   request.put('/movie/update',data.form).then (res =>{
      if (res.code === '200'){
        load()
        data.formVisible = false
@@ -105,7 +139,7 @@ load()
  }
  const del=(id) =>{
      ElMessageBox.confirm('删除数据后无法恢复，您确认吗？','确认删除',{type:'warning'}).then(res =>{
-       request.delete('/category/delete/' + id).then(res =>{
+       request.delete('/movie/delete/' + id).then(res =>{
          if (res.code === '200'){
            load()
            ElMessage.success('操作成功')
@@ -114,5 +148,9 @@ load()
          }
        })
      }).catch(err => {})
+ }
+ // 处理文件上传的钩子
+ const handleImgSuccess = (res) => {
+   data.form.imgUrl = res.data  // res.data就是文件上传返回的文件路径，获取到路径后赋值表单的属性
  }
    </script>

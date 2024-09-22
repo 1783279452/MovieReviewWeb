@@ -1,4 +1,4 @@
-package com.example.moviereviewweb.Bean;
+package com.example.moviereviewweb.entity;
 
 public class Category {
     private Integer id;
