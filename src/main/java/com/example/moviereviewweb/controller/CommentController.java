@@ -15,10 +15,10 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
-/*    @GetMapping("/get")
-    public Result get(){
-        return commentService.get();
-    }*/
+    @GetMapping("/get/{eid}")//查询评价--接收评价单id
+    public Result get(@PathVariable Integer eid){
+        return commentService.get(eid);
+    }
 
     @PostMapping("/add")//添加评价————接收comment对象信息在请求体中
     public Result addComment(@RequestBody Comment comment){

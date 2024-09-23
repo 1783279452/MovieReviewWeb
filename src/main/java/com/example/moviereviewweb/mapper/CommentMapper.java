@@ -3,6 +3,8 @@ package com.example.moviereviewweb.mapper;
 import com.example.moviereviewweb.Bean.Comment;
 import org.apache.ibatis.annotations.*;
 
+import java.util.Map;
+
 @Mapper
 public interface CommentMapper {
 
@@ -21,4 +23,14 @@ public interface CommentMapper {
 
     @Delete("delete from comment where mid = #{id}")
     int deleteByMovieId(Integer id);
+
+    @Select("select c.eid AS id, c.uid AS user_id , c.mid AS movie_id, c.tid, c.content AS comment, c.score, c.time , u.name AS user_name , m.name AS movie_name " +
+            "from comment c " +
+            "join movie m on c.mid = m.mid " +
+            "join user u on c.uid = u.uid " +
+            "where c.eid = #{eid}")
+    Map<String, Object> getByEid(Integer eid);
+
+
+
 }

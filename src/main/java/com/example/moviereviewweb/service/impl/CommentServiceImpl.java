@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 @Service
 @Slf4j
@@ -50,6 +51,12 @@ public class CommentServiceImpl implements CommentService {
             return Result.success("删除成功，已删除:" + i +"条");
         }
         return Result.error("删除失败");
+    }
+
+    @Override//查询评价--接收评价单id
+    public Result get(Integer eid) {
+        Map<String, Object> comment = commentMapper.getByEid(eid);
+        return Result.success(comment);
     }
 
     //是否存在相同电影的评价 -- 接收电影id
