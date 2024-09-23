@@ -15,7 +15,7 @@ public class WebConfig implements WebMvcConfigurer {//注册拦截器
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //调用注册拦截器的方法api。http://localhost:8080/classes
-        //TODO
+        //TODO 用户登录拦截配置
         //registry.addInterceptor(loginInterceptor).addPathPatterns("/**").excludePathPatterns("/login","/signup");
         //设置拦截路径和不拦截的路径
 

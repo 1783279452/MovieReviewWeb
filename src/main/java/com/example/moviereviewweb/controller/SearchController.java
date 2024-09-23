@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @Slf4j
 public class SearchController {
@@ -19,6 +21,11 @@ public class SearchController {
     public Result test1(@PathVariable String data){
 
         return Result.success(tmdbService.getMultiSearchResults(data));
+    }
+
+    @GetMapping("/search/movie/popular")//获取当前热门电影
+    public Result getPopularMovieList(){
+        return Result.success(tmdbService.getPopularMovie());
     }
 
 }

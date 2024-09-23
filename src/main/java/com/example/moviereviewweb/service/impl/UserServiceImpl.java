@@ -79,7 +79,13 @@ public class UserServiceImpl implements UserService {
             map1.put("username",user.getUsername());
             String jwtNum = JwtUtils.generateJwt(map1);
             /*调用jwt工具类，往里传递map集合，该集合包括要生成的员工的信息,然后借此信息生成jwt令牌*/
-            return Result.success(jwtNum);
+            if(user.getStatu().equals("1")){
+                return Result.success("用户：" + jwtNum);
+            }else if (user.getStatu().equals("2")){
+                return Result.success("管理员：" + jwtNum);
+            }else {
+                return Result.success("游客：" + jwtNum);
+            }
         }else {
             return Result.error("用户名或密码错误");
         }
