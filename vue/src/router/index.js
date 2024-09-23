@@ -15,6 +15,8 @@ const router = createRouter({
         { path: 'notice', component: () => import('@/views/manager/Notice.vue')},
         { path: 'category', component: () => import('@/views/manager/Category.vue')},
         { path: 'movie', component: () => import('@/views/manager/Movie.vue')},
+        { path: 'comment', component: () => import('@/views/manager/Comment.vue')},
+        { path: 'user', component: () => import('@/views/manager/User.vue')},
       ]
     },
     { path: '/login', component: () => import('@/views/Login.vue')},

@@ -18,4 +18,5 @@ public interface UserService {
     Result getuser(Integer id);//查询用户
 
     Result login(User user);
+    
 }

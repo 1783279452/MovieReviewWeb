@@ -1,21 +1,18 @@
 package com.example.moviereviewweb.mapper;
 
-import com.example.moviereviewweb.Bean.Comment;
-import org.apache.ibatis.annotations.*;
+import com.example.moviereviewweb.entity.Comment;
 
-@Mapper
+import java.util.List;
+
 public interface CommentMapper {
+    void insert(Comment comment);
 
-    @Insert("insert into comment (uid, mid, tid, content, score, time) " +
-            "VALUE (#{commentUID},#{commentMID},#{commentTID},#{content},#{score},#{time})")
-    void addComment(Comment comment);
+    void updateById(Comment comment);
 
-    @Select("select count(*) from comment where mid = #{id}")
-    int getCommentByMovieId(Integer id);
+    void deleteById(Integer id);
 
-    @Delete("delete from comment where eid = #{id}")
-    void deletecomment(Integer id);
+    List<Comment> selectAll(Comment comment);
 
-    //@Update("update moviereviewweb_database.comment set content = #{content} where eid = #{EID}")
-    void updateComment(Comment comment);
+
+
 }

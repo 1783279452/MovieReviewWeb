@@ -55,7 +55,7 @@
            <el-input v-model="data.form.language" autocomplete="off" placeholder="请输入放映语言" />
          </el-form-item>
          <el-form-item label="简介">
-           <el-input rows="5" v-model="data.form.summary" autocomplete="off" placeholder="请输入简介" />
+           <el-input rows="5" type="textarea" v-model="data.form.summary" autocomplete="off" placeholder="请输入简介" />
          </el-form-item>
        </el-form>
        <template #footer>

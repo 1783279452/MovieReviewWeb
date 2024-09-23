@@ -4,7 +4,7 @@
       <div style="flex: 1">
         <div style="padding-left: 20px; display: flex; align-items: center">
           <img src="@/assets/imgs/logo.png" alt="" style="width: 40px">
-          <div style="font-weight: bold; font-size: 24px; margin-left: 5px">管理系统</div>
+          <div style="font-weight: bold; font-size: 24px; margin-left: 5px;color: #7f7fd5">电影评论系统</div>
         </div>
       </div>
       <div style="width: fit-content; padding-right: 10px; display: flex; align-items: center;">
@@ -24,6 +24,10 @@
           <el-menu-item index="/home">
             <el-icon><HomeFilled /></el-icon>
             <span>系统首页</span>
+          </el-menu-item>
+          <el-menu-item index="/comment">
+            <el-icon><comment /></el-icon>
+            <span>电影评论</span>
           </el-menu-item>
           <el-sub-menu index="1">
             <template #title>
@@ -51,6 +55,10 @@
             <el-menu-item index="/admin">
               <el-icon><User /></el-icon>
               <span>管理员信息</span>
+            </el-menu-item>
+            <el-menu-item index="/user">
+              <el-icon><User /></el-icon>
+              <span>普通用户信息</span>
             </el-menu-item>
           </el-sub-menu>
           <el-menu-item index="/person">
