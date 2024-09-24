@@ -20,8 +20,9 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
+    //注册登录，接收前端账号、密码、状态码
     @PostMapping("/signup")//注册用户
-    public Result signUp(@RequestBody User user){
+    public Result signUpAll(@RequestBody User user){
         return userService.adduser(user);
     }
 
@@ -30,7 +31,7 @@ public class LoginController {
 //        对前端传来的密码进行md5加密 再查询
         String password = user.getPassword();
         password = DigestUtils.md5DigestAsHex(password.getBytes());//spring提供的工具类DigestUtils
-        user.setPassword(password);
+        user.setPassword(password);//TODO 加密
         return  userService.login(user);
 
     }

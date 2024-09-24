@@ -23,9 +23,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Result adduser(User user) {//添加用户
-        if (isUsername(user.getUsername())){
+/*        if (isUserName(user.getUsername())){
             return Result.error("失败，添加的用户名重复");
-        }
+        }*/
         if (isPassword(user.getPassword())){
             return Result.error("失败，密码长度需要大于等于6位");
         }
@@ -36,9 +36,21 @@ public class UserServiceImpl implements UserService {
             return Result.error("失败，账号不能为空");
         }
         user.setCreateTime(LocalDateTime.now());
-        user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));//密码md5加密
-        userMapper.adduser(user);
-        return Result.success("成功");
+        user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));//TODO 密码md5加密
+        if (user.getStatu().equals("1")){
+            if (isUserName(user.getUsername())){
+                return Result.error("失败，用户的用户名重复");
+            }
+            userMapper.adduser(user);
+            return Result.success("用户注册成功");
+        }else if (user.getStatu().equals("2")){
+            if (isAdminName(user.getUsername())){
+                return Result.error("失败，管理员的用户名重复");
+            }
+            userMapper.addadmin(user);
+            return Result.success("管理员注册成功");
+        }
+        return Result.error("失败");
     }
 
     @Override
@@ -67,29 +79,42 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Result login(User user) {//登录
-
-        User user1 = userMapper.login(user);
+        User user1 = new User();
+        if (user.getStatu().equals("1")){
+            user1 = userMapper.loginUser(user);
+        }else if (user.getStatu().equals("2")){
+            user1 = userMapper.loginAdmin(user);
+        }
 
         /*生成jwt令牌，并返回前端（如果调用mapper方法判断账号密码存在 登录成功的话）*/
         if (user1 != null){
             HashMap<String, Object> map1 = new HashMap<>();
 //            Map<String, Object> map1 = new HashMap<>();
             map1.put("id",user.getUID());
-            map1.put("name",user.getName());
+            map1.put("password",user.getPassword());
             map1.put("username",user.getUsername());
             String jwtNum = JwtUtils.generateJwt(map1);
             /*调用jwt工具类，往里传递map集合，该集合包括要生成的员工的信息,然后借此信息生成jwt令牌*/
-            if(user.getStatu().equals("1")){
+
+/*            if(user.getStatu().equals("1")){
                 return Result.success("用户：" + jwtNum);
             }else if (user.getStatu().equals("2")){
                 return Result.success("管理员：" + jwtNum);
             }else {
                 return Result.success("游客：" + jwtNum);
-            }
+            }*/
+
+            //return Result.success(user1  + "token: " +jwtNum);
+
+            HashMap<String, Object> result = new HashMap<>();
+            result.put("uid", user1.getUID());
+            result.put("statu", user1.getStatu());
+            result.put("token", jwtNum);
+
+            return Result.success(result);
         }else {
             return Result.error("用户名或密码错误");
         }
-
     }
 
     /*以下为异常逻辑处理*/
@@ -99,8 +124,14 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
-    public boolean isUsername(String username){//判断是否存在账号
+    public boolean isUserName(String username){//判断是否存在用户账号
         if (userMapper.isUsername(username) >=1 ){
+            return true;
+        }
+        return false;
+    }
+    public boolean isAdminName(String username){//判断是否存在用户账号
+        if (userMapper.isAdminName(username) >=1 ){
             return true;
         }
         return false;

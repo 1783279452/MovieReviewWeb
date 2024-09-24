@@ -20,6 +20,7 @@ public class MovieController {
     public Result deleteMovie(@PathVariable Integer id) {
 
         return movieService.deleteMovie(id);
+
     }
 
 }
