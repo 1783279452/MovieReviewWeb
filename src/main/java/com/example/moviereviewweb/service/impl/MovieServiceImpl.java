@@ -8,9 +8,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Slf4j
-public class MovieServiceImpl implements MovieService {
+public abstract class MovieServiceImpl implements MovieService {
 
     @Autowired
     private MovieMapper movieMapper;
@@ -34,11 +36,27 @@ public class MovieServiceImpl implements MovieService {
 
     //查询是否存在电影——发送电影id
     public Boolean IsMovieById(Integer id){
-        int Number = movieMapper.getMovieById(id);
+        int Number = movieMapper.getMovieCountById(id);
         if (Number >= 1){//存在
             return true;
         }
         return false;//不存在
+    }
+
+    public Result updateMovie(Movie movie) {
+        if (IsMovieById(movie.getMID())) {
+            // 更新电影逻辑，例如调用 mapper.updateMovie(movie);
+            return Result.success();
+        }
+        return Result.error("更新失败，不存在此电影：" + movie.getMID());
+    }
+
+    public Movie getMovieById(Integer id) {
+        return movieMapper.getMovieById(id);
+    }
+
+    public List<Movie> getAllMovies() {
+        return movieMapper.getAllMovies();
     }
 
 
