@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface MovieMapper {
 
@@ -16,7 +18,13 @@ public interface MovieMapper {
     void addMovie(Movie movie);
 
     @Select("select count(*) from movie where mid = #{id}")
-    int getMovieById(Integer id);
+    int getMovieCountById(Integer id);
+
+    @Select("SELECT * FROM movie")
+    List<Movie> getAllMovies(); // 获取所有电影
+    @Select("SELECT * FROM movie WHERE mid = #{id}")
+    Movie getMovieById(Integer id); // 根据 ID 查询电影
+
 
     @Delete("delete from movie where mid = #{id}")
     void deletemovie(Integer id);

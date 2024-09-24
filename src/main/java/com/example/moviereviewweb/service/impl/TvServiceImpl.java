@@ -1,11 +1,16 @@
 package com.example.moviereviewweb.service.impl;
 
+import com.example.moviereviewweb.Bean.Movie;
 import com.example.moviereviewweb.Bean.Result;
 import com.example.moviereviewweb.Bean.TV;
 import com.example.moviereviewweb.mapper.TvMapper;
 import com.example.moviereviewweb.service.TvService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+
 
 @Service
 public class TvServiceImpl implements TvService {
@@ -31,12 +36,24 @@ public class TvServiceImpl implements TvService {
     }
 
     @Override
-    public Boolean IsTvById(Integer id) {//是否存在电视剧
-        int Number = tvMapper.getTvById(id);
-        if (Number >= 1){//存在
-            return true;
+    public Boolean IsTvById(Integer id) { // 是否存在电视剧
+        TV tv = tvMapper.getTvById(id); // 返回的是TV对象，而不是int
+        return tv != null;  // 如果tv不为null，则说明存在此电视剧，返回true；否则返回false
+    }
+    public Result updateTv(TV tv) {
+        if (IsTvById(tv.getTID())) {
+            // 更新电影逻辑，例如调用 mapper.updateMovie(movie);
+            return Result.success();
         }
-        return false;//不存在
+        return Result.error("更新失败，不存在此电视剧：" + tv.getTID());
+    }
+
+    public TV getTvById(Integer id) {
+        return tvMapper.getTvById(id);
+    }
+
+    public List<TV> getAllTv() {
+        return tvMapper.getAllTv();
     }
 
 }

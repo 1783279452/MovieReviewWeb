@@ -1,10 +1,13 @@
 package com.example.moviereviewweb.mapper;
 
+import com.example.moviereviewweb.Bean.Movie;
 import com.example.moviereviewweb.Bean.TV;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 @Mapper
 public interface TvMapper {
@@ -17,5 +20,11 @@ public interface TvMapper {
     void addTv(TV tv);
 
     @Select("select count(*) from tv where tid = #{id}")
-    int getTvById(Integer id);
+    int getTvCountById(Integer id);
+
+    @Select("SELECT * FROM tv")
+    List<TV> getAllTv(); // 获取所有电视剧
+
+    @Select("SELECT * FROM tv WHERE mid = #{id}")
+    TV getTvById(Integer id); // 根据 ID 查询电视剧
 }
