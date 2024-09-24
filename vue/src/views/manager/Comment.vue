@@ -6,7 +6,7 @@
        <el-button type="info" @click="reset">重置</el-button>
      </div>
      <div class="card" style="margin-bottom: 5px">
-       <el-button type="primary" style="margin-bottom: 10px" @click="handleAdd">新增</el-button>
+
        <el-table :data="data.tableData" stripe>
          <el-table-column prop="filmName" label="电影名称" width="180" />
          <el-table-column prop="score" label="评分" width="180">

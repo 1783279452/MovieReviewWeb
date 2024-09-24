@@ -17,10 +17,12 @@ const router = createRouter({
         { path: 'movie', component: () => import('@/views/manager/Movie.vue')},
         { path: 'comment', component: () => import('@/views/manager/Comment.vue')},
         { path: 'user', component: () => import('@/views/manager/User.vue')},
+        { path: 'filmView', component: () => import('@/views/manager/FilmView.vue')},
+        { path: 'filmDetail', component: () => import('@/views/manager/FilmDetail.vue')},
       ]
     },
     { path: '/login', component: () => import('@/views/Login.vue')},
-    { path: '/signup', component: () => import('@/views/Register.vue')},
+    { path: '/register', component: () => import('@/views/Register.vue')},
   ]
 })
 

@@ -55,7 +55,7 @@
       if (valid) {
         // 调用后台的接口
         request.post('/login', data.form).then(res => {
-          if (res.code === '1') {
+          if (res.code == 200) {
             ElMessage.success("登录成功")
             router.push('/')
             localStorage.setItem('system-user', JSON.stringify(res.data))

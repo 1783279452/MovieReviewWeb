@@ -5,10 +5,10 @@
 <!--        namespace后跟要接管的接口引用地址-->
 
 <mapper namespace="com.example.moviereviewweb.mapper.CommentMapper">
-    <insert id="insert" parameterType="com.example.moviereviewweb.entity.Category">
+    <insert id="insert" parameterType="com.example.moviereviewweb.entity.Comment">
     insert into comment(mid,score,comment,user_id,time,type) values (#{mid},#{score},#{comment},#{userId},#{time},#{type})
     </insert>
-    <update id="updateById"  parameterType="com.example.moviereviewweb.entity.Category">
+    <update id="updateById"  parameterType="com.example.moviereviewweb.entity.Comment">
         update comment set mid=#{mid},score=#{score},comment=#{comment},user_id=#{userId}, time=#{time},type=#{type}
         where id=#{id}
     </update>
@@ -17,11 +17,12 @@
     </delete>
 
 
-    <select id="selectAll" resultType="com.example.moviereviewweb.entity.Category">
-        select comment. *  film.name as filmName from comment
+    <select id="selectAll" resultType="com.example.moviereviewweb.entity.Comment">
+        select comment. *  movie.name as filmName,user.username as userName from comment
         left join movie on comment.mid=movie.mid
+        left join user on comment.user_id =user.uid
         <where>
-            <if test="filmName !=null">and film.name like contact('%',#{filmName},'%')</if>
+            <if test="filmName !=null">and movie.name like contact('%',#{filmName},'%')</if>
         </where>
         order by id desc
     </select>

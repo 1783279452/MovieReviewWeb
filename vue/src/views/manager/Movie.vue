@@ -28,7 +28,7 @@
          </el-table-column>
        </el-table>
      </div>
-     <div>
+     <div class="card">
        <el-pagination background layout="total,prev, pager, next" v-model:current-page="data.pageNum" v-model:page-size="data.pageSize"
                       :total="data.total" @current-change="load" />
      </div>

@@ -25,6 +25,10 @@
             <el-icon><HomeFilled /></el-icon>
             <span>系统首页</span>
           </el-menu-item>
+          <el-menu-item index="/filmView">
+            <el-icon><Film /></el-icon>
+            <span>电影列表</span>
+          </el-menu-item>
           <el-menu-item index="/comment">
             <el-icon><comment /></el-icon>
             <span>电影评论</span>

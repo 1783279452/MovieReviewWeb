@@ -9,6 +9,17 @@ public class Comment {
     private  String time;
     private  String type;
     private  String filmName;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    private  String userName;
+
     public String getFilmName() {
         return filmName;
     }

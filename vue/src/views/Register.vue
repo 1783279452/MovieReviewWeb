@@ -65,7 +65,7 @@
       if (valid) {
         // 调用后台的接口
         request.post('/signup', data.form).then(res => {
-          if (res.code === '1') {
+          if (res.code === 200) {
             ElMessage.success("注册成功")
             router.push('/login')
           } else {
