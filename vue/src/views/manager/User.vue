@@ -16,13 +16,13 @@
         <el-table-column label="名称" prop="name"></el-table-column>
         <el-table-column label="头像">
           <template #default="scope">
-            <el-image :src="scope.row.avatar" style="width: 40px; height: 40px; border-radius: 50%"></el-image>
+            <el-image :src="scope.row.avatarurl" style="width: 40px; height: 40px; border-radius: 50%"></el-image>
           </template>
         </el-table-column>
-        <el-table-column label="角色" prop="role">
+        <el-table-column label="角色" prop="statu">
           <template #default="scope">
-            <span v-if="scope.row.role === 'ADMIN'">管理员</span>
-            <span v-if="scope.row.role === 'USER'">普通用户</span>
+            <span v-if="scope.row.statu === '2'">管理员</span>
+            <span v-if="scope.row.statu === '1'">普通用户</span>
           </template>
         </el-table-column>
         <el-table-column label="操作" align="center" width="160">
@@ -83,14 +83,14 @@ const data = reactive({
 
 // 分页查询
 const load = () => {
-  request.get('/user/selectPage', {
+  request.get('/userpage', {
     params: {
       pageNum: data.pageNum,
       pageSize: data.pageSize,
       name: data.name
     }
   }).then(res => {
-    data.tableData = res.data?.list
+    data.tableData = res.data?.List
     data.total = res.data?.total
   })
 }
@@ -161,7 +161,7 @@ const reset = () => {
 
 // 处理文件上传的钩子
 const handleImgSuccess = (res) => {
-  data.form.avatar = res.data  // res.data就是文件上传返回的文件路径，获取到路径后赋值表单的属性
+  data.form.avatarurl = res.data  // res.data就是文件上传返回的文件路径，获取到路径后赋值表单的属性
 }
 
 load()

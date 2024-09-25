@@ -24,7 +24,8 @@ const router = createRouter({
     },
     { path: '/login', component: () => import('@/views/Login.vue')},
     { path: '/signup', component: () => import('@/views/Register.vue')},
+    { path: '/Dashboard', component: () => import('@/Dashboard.vue')},
+    { path: '/DataInput', component: () => import('@/DataInput.vue')},
   ]
 })
-
 export default router

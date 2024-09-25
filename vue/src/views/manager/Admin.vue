@@ -16,18 +16,18 @@
         <el-table-column label="名称" prop="name"></el-table-column>
         <el-table-column label="头像">
           <template #default="scope">
-            <el-image :src="scope.row.avatar" style="width: 40px; height: 40px; border-radius: 50%"></el-image>
+            <el-image :src="scope.row.avatarurl" style="width: 40px; height: 40px; border-radius: 50%"></el-image>
           </template>
         </el-table-column>
         <el-table-column label="角色" prop="role">
           <template #default="scope">
-            <span v-if="scope.row.role === 'ADMIN'">管理员</span>
+            <span v-if="scope.row.statu === '2'">管理员</span>
           </template>
         </el-table-column>
         <el-table-column label="操作" align="center" width="160">
           <template #default="scope">
             <el-button type="primary" @click="handleEdit(scope.row)">编辑</el-button>
-            <el-button type="danger" @click="handleDelete(scope.row.id)">删除</el-button>
+            <el-button type="danger" @click="handleDelete(scope.row.uid)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -160,7 +160,7 @@ const reset = () => {
 
 // 处理文件上传的钩子
 const handleImgSuccess = (res) => {
-  data.form.avatar = res.data  // res.data就是文件上传返回的文件路径，获取到路径后赋值表单的属性
+  data.form.avatarurl = res.data  // res.data就是文件上传返回的文件路径，获取到路径后赋值表单的属性
 }
 
 load()

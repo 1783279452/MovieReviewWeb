@@ -2,13 +2,15 @@ package com.example.moviereviewweb.service;
 
 import com.example.moviereviewweb.Bean.Result;
 import com.example.moviereviewweb.Bean.User;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service//用户模块
 public interface UserService {
-
     Result adduser(User user);//添加用户
 
     List<User> getalluser();//查询全部用户
@@ -18,5 +20,6 @@ public interface UserService {
     Result getuser(Integer id);//查询用户
 
     Result login(User user);
-    
-}
+
+    }
+

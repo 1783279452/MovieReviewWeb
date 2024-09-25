@@ -19,7 +19,7 @@ public interface UserMapper {
             "VALUE (#{UID},#{username},#{password},#{name},#{avatarUrl},#{phoneNumber},#{gender},#{createTime},#{statu})")
     void addadmin(User user);
 
-    @Select("select uid, username, password, name, avatarurl, phonenumber, gender, create_time, statu createTime from user ")
+    @Select("select uid, username, password, name, avatarurl, phonenumber, gender, create_time, statu,create_Time from user ")
     List<User> getalluser();
 
     @Delete("delete from user where uid = #{id}")
