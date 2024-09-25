@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,6 +29,7 @@ public class TV {//电视剧——8项
     private Float T_score;//评分，默认为0.0
     private String language;//放映语言
     //private Short state;//状态，0连载，1完结，默认0
+    private LocalDateTime CreatTime;//记录创建时间
     private String summary;//简介
 
 

@@ -12,28 +12,32 @@ import java.util.List;
 
 @RestController
 @Slf4j
+@RequestMapping("/movie")
 public class MovieController {
 
     @Autowired
     private MovieService movieService;
 
-    @GetMapping("/movie/delete/{id}")//删除电影————接收电影id
+    @GetMapping("/delete/{id}")//删除电影————接收电影id
     public Result deleteMovie(@PathVariable Integer id) {
-
         return movieService.deleteMovie(id);
-
     }
-    @PostMapping("/movie/add")//
+
+    @GetMapping("/delete/ruleout/{id}")//删除除了id外的电影
+    public Result deleteRuleoutId(@PathVariable Integer id){
+        return movieService.deleteRuleoutId(id);
+    }
+    @PostMapping("/add")//
     public Result addMovie(@RequestBody Movie movie) {
         return movieService.addMovie(movie);
     }
-    @PutMapping("/movie/update")
+    @PutMapping("/update")
     public Result updateMovie(@RequestBody Movie movie) {
         return movieService.updateMovie(movie);
     }
 
     // 查询电影
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public Result getMovieById(@PathVariable Integer id) {
         Movie movie = movieService.getMovieById(id);
         if (movie != null) {

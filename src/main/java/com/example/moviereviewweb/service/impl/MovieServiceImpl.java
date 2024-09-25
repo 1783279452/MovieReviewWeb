@@ -8,11 +8,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 @Slf4j
-public abstract class MovieServiceImpl implements MovieService {
+public class MovieServiceImpl implements MovieService {
 
     @Autowired
     private MovieMapper movieMapper;
@@ -20,6 +21,7 @@ public abstract class MovieServiceImpl implements MovieService {
     //添加电影数据 前端提供movie对象相应的数据。
     public Result addMovie(Movie movie){
         log.info("传入数据" + movie);
+        movie.setCreatTime(LocalDateTime.now());
         movieMapper.addMovie(movie);
         return Result.success();
     }
@@ -34,9 +36,16 @@ public abstract class MovieServiceImpl implements MovieService {
 
     }
 
+    @Override//删除除了id外的电影
+    public Result deleteRuleoutId(Integer id) {
+        int num = movieMapper.deleteRuleoutId(id);
+        return Result.success("删除了" + num + "条记录");
+
+    }
+
     //查询是否存在电影——发送电影id
     public Boolean IsMovieById(Integer id){
-        int Number = movieMapper.getMovieCountById(id);
+        int Number = movieMapper.getMovieById(id);
         if (Number >= 1){//存在
             return true;
         }

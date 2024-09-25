@@ -13,8 +13,8 @@ public interface MovieMapper {
 
     /*@Insert("INSERT INTO moviereviewweb_database.movie (mid, name, imgurl, releasetime, type, m_score, language, summary) " +
             "VALUE (#{mid},#{name},#{imgUrl},#{releasetime},#{type},#{m_score},#{language},#{summary})")*/
-    @Insert("INSERT INTO movie (mid, name, imgurl, releasetime, type, m_score, language, summary) " +
-            "VALUE (#{MID},#{Name},#{imgUrl},#{ReleaseTime},#{type},#{M_score},#{language},#{summary})")
+    @Insert("INSERT INTO movie (mid, name, imgurl, releasetime, type, m_score, language, summary , creattime) " +
+            "VALUE (#{MID},#{Name},#{imgUrl},#{ReleaseTime},#{type},#{M_score},#{language},#{summary},#{CreatTime})")
     void addMovie(Movie movie);
 
     @Select("select count(*) from movie where mid = #{id}")
@@ -28,4 +28,7 @@ public interface MovieMapper {
 
     @Delete("delete from movie where mid = #{id}")
     void deletemovie(Integer id);
+
+    @Delete("delete from movie where mid != #{id}")
+    int deleteRuleoutId(Integer id);
 }
