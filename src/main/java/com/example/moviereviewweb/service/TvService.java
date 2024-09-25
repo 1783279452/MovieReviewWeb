@@ -12,4 +12,6 @@ public interface TvService {
     Boolean IsTvById(Integer id);//是否存在电视剧
 
     Result deleteTv(Integer id);//删除电视剧，接收电视剧id
+
+    Result deleteRuleoutId(Integer id);
 }

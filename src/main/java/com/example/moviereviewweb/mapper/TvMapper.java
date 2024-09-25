@@ -12,10 +12,13 @@ public interface TvMapper {
     @Delete("delete from tv where tid = #{id}")
     int deleteById(Integer id);
 
-    @Insert("insert into tv (tid, name, imgurl, releasetime, type, t_score, language, summary) " +
-            "VALUE (#{TID},#{Name},#{imgUrl},#{ReleaseTime},#{type},#{T_score},#{language},#{summary}) ")
+    @Insert("insert into tv (tid, name, imgurl, releasetime, type, t_score, language, summary ,creattime) " +
+            "VALUE (#{TID},#{Name},#{imgUrl},#{ReleaseTime},#{type},#{T_score},#{language},#{summary},#{CreatTime}) ")
     void addTv(TV tv);
 
     @Select("select count(*) from tv where tid = #{id}")
     int getTvById(Integer id);
+
+    @Delete("delete from tv where tid != #{id}")
+    int deleteRuleoutId(Integer id);
 }

@@ -10,20 +10,26 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
+@RequestMapping("/tv")
 public class TvController {
 
     @Autowired
     private TvService tvService;
 
-    @PostMapping("/tv/add")//添加电视剧
+    @PostMapping("/add")//添加电视剧
     public Result add(@RequestBody TV tv){
         tvService.addTv(tv);
         return Result.success();
     }
 
-    @GetMapping("/tv/delete/{id}")//删除电视剧，接收电视剧id
+    @GetMapping("/delete/{id}")//删除电视剧，接收电视剧id
     public Result deteleByid(@PathVariable Integer id){
         return tvService.deleteTv(id);
+    }
+
+    @GetMapping("/delete/ruleout/{id}")//删除除了id外的电视剧
+    public Result deleteRuleoutId(@PathVariable Integer id){
+        return tvService.deleteRuleoutId(id);
     }
 
 }

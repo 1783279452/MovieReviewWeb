@@ -7,6 +7,8 @@ import com.example.moviereviewweb.service.TvService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class TvServiceImpl implements TvService {
 
@@ -16,6 +18,7 @@ public class TvServiceImpl implements TvService {
     //TODO
     @Override//添加电视剧
     public Result addTv(TV tv) {
+        tv.setCreatTime(LocalDateTime.now());
         tvMapper.addTv(tv);
 
         return null;
@@ -28,6 +31,13 @@ public class TvServiceImpl implements TvService {
             return Result.success("删除成功，已删除：" + i +"条");
         }
         return Result.error("删除失败");
+    }
+
+    @Override//删除除了id外的电视剧
+    public Result deleteRuleoutId(Integer id) {
+        int num = tvMapper.deleteRuleoutId(id);
+        return Result.success("删除了" + num + "条记录");
+
     }
 
     @Override

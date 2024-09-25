@@ -35,7 +35,7 @@ public class CommentController {
         return commentService.updateComment(comment);
     }
 
-    @GetMapping("/deletebymovie/{id}")//删除评价，接收电影id
+    @GetMapping("/delete/movie/{id}")//删除评价，接收电影id
     public Result deleteByMovieId(@PathVariable Integer id){
         return commentService.deleteByMovieId(id);
 
