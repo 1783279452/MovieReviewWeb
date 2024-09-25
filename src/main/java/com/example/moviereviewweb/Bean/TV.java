@@ -11,7 +11,17 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class TV {//电视剧——8项
 
-    private Integer TID;//电视剧id
+    private Integer TID;  // 假设TID是电视剧的ID
+
+    // Getter for TID
+    public Integer getTID() {
+        return TID;
+    }
+
+    // Setter for TID
+    public void setTID(Integer TID) {
+        this.TID = TID;
+    }
     private String Name;//名字
     private String imgUrl;//图片
     private String ReleaseTime;//上映年份
@@ -21,5 +31,6 @@ public class TV {//电视剧——8项
     //private Short state;//状态，0连载，1完结，默认0
     private LocalDateTime CreatTime;//记录创建时间
     private String summary;//简介
+
 
 }

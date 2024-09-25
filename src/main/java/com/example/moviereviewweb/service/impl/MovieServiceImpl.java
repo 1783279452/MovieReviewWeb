@@ -1,9 +1,12 @@
 package com.example.moviereviewweb.service.impl;
 
 import com.example.moviereviewweb.Bean.Movie;
+import com.example.moviereviewweb.Bean.PageBean;
 import com.example.moviereviewweb.Bean.Result;
 import com.example.moviereviewweb.mapper.MovieMapper;
 import com.example.moviereviewweb.service.MovieService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,12 +43,20 @@ public class MovieServiceImpl implements MovieService {
     public Result deleteRuleoutId(Integer id) {
         int num = movieMapper.deleteRuleoutId(id);
         return Result.success("删除了" + num + "条记录");
+    }
 
+    @Override//分页查询电影
+    public PageBean getPage(Integer page, Integer pageSize) {
+        PageHelper.startPage(page,pageSize);
+        List<Movie> list = movieMapper.getPage();
+        Page<Movie> listpage = (Page<Movie>) list;
+        PageBean pageBean = new PageBean(listpage.getTotal(), listpage.getResult());
+        return pageBean;
     }
 
     //查询是否存在电影——发送电影id
     public Boolean IsMovieById(Integer id){
-        int Number = movieMapper.getMovieById(id);
+        int Number = movieMapper.getMovieCountById(id);
         if (Number >= 1){//存在
             return true;
         }
@@ -67,6 +78,7 @@ public class MovieServiceImpl implements MovieService {
     public List<Movie> getAllMovies() {
         return movieMapper.getAllMovies();
     }
+
 
 
 

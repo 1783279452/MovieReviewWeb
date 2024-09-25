@@ -31,4 +31,7 @@ public interface MovieMapper {
 
     @Delete("delete from movie where mid != #{id}")
     int deleteRuleoutId(Integer id);
+
+    @Select("select mid, name, imgurl, releasetime, type, m_score, language, summary, creattime from movie ")
+    List<Movie> getPage();
 }

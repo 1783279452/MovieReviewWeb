@@ -1,6 +1,7 @@
 package com.example.moviereviewweb.controller;
 
 import com.example.moviereviewweb.Bean.Movie;
+import com.example.moviereviewweb.Bean.PageBean;
 import com.example.moviereviewweb.Bean.Result;
 import com.example.moviereviewweb.mapper.MovieMapper;
 import com.example.moviereviewweb.service.MovieService;
@@ -17,6 +18,12 @@ public class MovieController {
 
     @Autowired
     private MovieService movieService;
+
+    @GetMapping("/getpage")//分页查询电影  前端返回 1.当前页码  2.每页所需数据数
+    public Result getMoviePage(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer pageSize){
+        PageBean pageBean = movieService.getPage(page , pageSize);
+        return Result.success(pageBean);
+    }
 
     @GetMapping("/delete/{id}")//删除电影————接收电影id
     public Result deleteMovie(@PathVariable Integer id) {

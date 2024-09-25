@@ -4,7 +4,7 @@ import com.example.moviereviewweb.Bean.Comment;
 import com.example.moviereviewweb.Bean.Result;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service//评价模块
 public interface CommentService {
     Result addComment(Comment comment);//添加评价 --接收post数据
 
