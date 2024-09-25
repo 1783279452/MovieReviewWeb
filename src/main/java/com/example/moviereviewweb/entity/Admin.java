@@ -16,7 +16,7 @@ public class Admin extends Account {
     /** 头像 */
     private String avatar;
     /** 角色标识 */
-    private String role;
+    private String statu;
 
     @Override
     public Integer getId() {
@@ -69,12 +69,8 @@ public class Admin extends Account {
     }
 
     @Override
-    public String getRole() {
-        return role;
-    }
+    public String getStatu() { return statu; }
 
     @Override
-    public void setRole(String role) {
-        this.role = role;
-    }
+    public void setStatu(String statu) { this.statu = statu; }
 }

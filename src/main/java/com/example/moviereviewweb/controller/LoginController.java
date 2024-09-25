@@ -21,22 +21,21 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/signup")//注册用户
-    public Result signUp(@RequestBody User user){
+    @PostMapping("/signup")//注册用户（用户）
+    public Result signUpUser(@RequestBody User user){
         return userService.adduser(user);
     }
 
-    @PostMapping("login")//登录及权限校验功能
+    @PostMapping("/login")//登录及权限校验功能
     public Result login(@RequestBody User user){
 //        对前端传来的密码进行md5加密 再查询
         String password = user.getPassword();
         password = DigestUtils.md5DigestAsHex(password.getBytes());//spring提供的工具类DigestUtils
-        user.setPassword(password);
-        return  userService.login(user);
+        //user.setPassword(password);
 
-    }
-    @GetMapping("/")
-    public Result hello() {return Result.success();
+        //user.setUID(999);
+
+        return  userService.login(user);
 
     }
 }

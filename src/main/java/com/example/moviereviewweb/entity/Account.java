@@ -11,8 +11,11 @@ public class Account {
     private String name;
     /** 密码 */
     private String password;
+
+
+
     /** 角色标识 */
-    private String role;
+    private String statu;
     /** 新密码 */
     private String newPassword;
     /** 头像 */
@@ -51,13 +54,9 @@ public class Account {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
-    }
+    public String getStatu() { return statu; }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
+    public void setStatu(String statu) { this.statu = statu; }
 
     public String getNewPassword() {
         return newPassword;

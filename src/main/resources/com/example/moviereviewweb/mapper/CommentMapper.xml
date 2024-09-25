@@ -18,7 +18,7 @@
 
 
     <select id="selectAll" resultType="com.example.moviereviewweb.entity.Comment">
-        select comment. *  movie.name as filmName,user.username as userName from comment
+        select comment. *,  movie.name as filmName,user.username as userName from comment
         left join movie on comment.mid=movie.mid
         left join user on comment.user_id =user.uid
         <where>

@@ -35,7 +35,7 @@ public class AdminService {
         if (ObjectUtil.isEmpty(admin.getName())) {
             admin.setName(admin.getUsername());
         }
-        admin.setRole("ADMIN");
+        admin.setStatu("2");
         adminMapper.insert(admin);
     }
 

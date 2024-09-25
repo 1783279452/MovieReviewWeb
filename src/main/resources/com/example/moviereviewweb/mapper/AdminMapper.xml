@@ -13,12 +13,12 @@
     </select>
 
     <insert id="insert" parameterType="com.example.moviereviewweb.entity.Admin" useGeneratedKeys="true">
-        insert into admin(id, username, password, name, avatar, role)
-        values (#{id}, #{username}, #{password}, #{name}, #{avatar}, #{role})
+        insert into admin(id, username, password, name, avatar, statu)
+        values (#{id}, #{username}, #{password}, #{name}, #{avatar}, #{statu})
     </insert>
 
     <update id="updateById" parameterType="com.example.moviereviewweb.entity.Admin">
-        update admin set username = #{username}, password = #{password}, name = #{name}, avatar = #{avatar}, role = #{role}
+        update admin set username = #{username}, password = #{password}, name = #{name}, avatar = #{avatar}, statu = #{statu}
         where id = #{id} 
     </update>
 

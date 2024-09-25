@@ -7,7 +7,7 @@ public class Comment {
     private  String comment;
     private  Integer userId;
     private  String time;
-    private  String type;
+    private  String category;
     private  String filmName;
 
     public String getUserName() {
@@ -78,11 +78,11 @@ public class Comment {
         this.time = time;
     }
 
-    public String getType() {
-        return type;
+    public String getCategory() {
+        return category;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCategory(String type) {
+        this.category = type;
     }
 }

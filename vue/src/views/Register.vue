@@ -12,6 +12,12 @@
         <el-form-item prop="confirmPassword">
           <el-input :prefix-icon="Lock" size="large" v-model="data.form.confirmPassword" placeholder="请确认密码" show-password />
         </el-form-item>
+        <el-form-item prop="statu">
+          <el-select size="large" style="width: 100%" v-model="data.form.statu">
+            <el-option value="2" label="管理员"></el-option>
+            <el-option value="1" label="普通用户"></el-option>
+          </el-select>
+        </el-form-item>
         <el-form-item>
           <el-button size="large" type="primary" style="width: 100%" @click="register">注 册</el-button>
         </el-form-item>

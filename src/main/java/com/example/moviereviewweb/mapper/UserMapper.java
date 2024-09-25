@@ -15,6 +15,10 @@ public interface UserMapper {
             "VALUE (#{UID},#{username},#{password},#{name},#{avatarUrl},#{phoneNumber},#{gender},#{createTime},#{statu})")
     void adduser(User user);
 
+    @Insert("insert into admin (uid, username, password, name, avatarurl, phonenumber, gender, create_time, statu) " +
+            "VALUE (#{UID},#{username},#{password},#{name},#{avatarUrl},#{phoneNumber},#{gender},#{createTime},#{statu})")
+    void addadmin(User user);
+
     @Select("select uid, username, password, name, avatarurl, phonenumber, gender, create_time, statu createTime from user ")
     List<User> getalluser();
 
@@ -32,6 +36,12 @@ public interface UserMapper {
     @Select("select count(*) from user where uid = #{id}")
     int isUid(Integer id);
 
-    @Select("select username , password from user where username =#{username} and password = #{password}")
-    User login(User user);
+    @Select("select statu,uid , username , password from user where username =#{username} and password = #{password}")
+    User loginUser(User user);
+
+    @Select("select statu,uid , username , password from admin where username =#{username} and password = #{password}")
+    User loginAdmin(User user);
+
+    @Select("select count(*) from admin where username = #{username}")
+    int isAdminName(String username);
 }

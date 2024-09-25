@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <div class="login-box">
-      <div style="font-weight: bold; font-size: 24px; text-align: center; margin-bottom: 30px; color: #1450aa">欢 迎 登 录</div>
+      <div style="font-weight: bold; font-size: 24px; text-align: center; margin-bottom: 30px; color: #1450aa">电 影 评 论 系 统</div>
       <el-form :model="data.form"  ref="formRef" :rules="data.rules">
         <el-form-item prop="username">
           <el-input :prefix-icon="User" size="large" v-model="data.form.username" placeholder="请输入账号" />
@@ -11,8 +11,8 @@
         </el-form-item>
         <el-form-item prop="statu">
           <el-select size="large" style="width: 100%" v-model="data.form.statu">
-            <el-option value="1" label="管理员"></el-option>
-            <el-option value="2" label="普通用户"></el-option>
+            <el-option value="2" label="管理员"></el-option>
+            <el-option value="1" label="普通用户"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item>
@@ -35,7 +35,8 @@
   import router from "@/router";
 
   const data = reactive({
-    form: { statu: '2' },
+    form: { statu: '1' },
+    user:{},
     rules: {
       username: [
         { required: true, message: '请输入账号', trigger: 'blur' },
@@ -57,15 +58,20 @@
         request.post('/login', data.form).then(res => {
           if (res.code == 200) {
             ElMessage.success("登录成功")
-            router.push('/')
             localStorage.setItem('system-user', JSON.stringify(res.data))
+            data.user = res.data;
+            router.push('/')
+            console.log(res);
           } else {
             ElMessage.error(res.msg)
           }
         })
       }
     })).catch(error => {
-      console.error(error)
+      console.error(error);
+      ElMessage.error('登录请求失败');
+    }).catch(error => {
+      console.error(error);
     })
   }
 

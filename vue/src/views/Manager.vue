@@ -25,6 +25,10 @@
             <el-icon><HomeFilled /></el-icon>
             <span>系统首页</span>
           </el-menu-item>
+          <el-menu-item index="/charts">
+            <el-icon><TrendCharts /></el-icon>
+            <span>图表</span>
+          </el-menu-item>
           <el-menu-item index="/filmView">
             <el-icon><Film /></el-icon>
             <span>电影列表</span>
@@ -33,7 +37,7 @@
             <el-icon><comment /></el-icon>
             <span>电影评论</span>
           </el-menu-item>
-          <el-sub-menu index="1">
+          <el-sub-menu index="1" v-if="data.user.statu === '2' ">
             <template #title>
               <el-icon><Menu /></el-icon>
               <span>信息管理</span>
@@ -51,7 +55,7 @@
               <span>公告信息</span>
             </el-menu-item>
           </el-sub-menu>
-          <el-sub-menu index="2">
+          <el-sub-menu index="2" v-if="data.user.statu === '2' ">
             <template #title>
               <el-icon><Memo /></el-icon>
               <span>用户管理</span>
@@ -96,8 +100,9 @@ import {ElMessage} from "element-plus";
 const data = reactive({
   user: JSON.parse(localStorage.getItem('system-user') || '{}')
 })
-
-if (!data.user?.id) {
+console.log('data.user:',data.user);
+console.log('data.user.uid:',data.user.uid);
+if (!data.user?.uid) {
   ElMessage.error('请登录！')
   router.push('/login')
 }

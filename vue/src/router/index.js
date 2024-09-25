@@ -19,10 +19,11 @@ const router = createRouter({
         { path: 'user', component: () => import('@/views/manager/User.vue')},
         { path: 'filmView', component: () => import('@/views/manager/FilmView.vue')},
         { path: 'filmDetail', component: () => import('@/views/manager/FilmDetail.vue')},
+        { path: 'charts', component: () => import('@/views/manager/Charts.vue')},
       ]
     },
     { path: '/login', component: () => import('@/views/Login.vue')},
-    { path: '/register', component: () => import('@/views/Register.vue')},
+    { path: '/signup', component: () => import('@/views/Register.vue')},
   ]
 })
 
