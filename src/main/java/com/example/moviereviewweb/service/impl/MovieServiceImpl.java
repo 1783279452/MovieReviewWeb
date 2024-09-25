@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class MovieServiceImpl implements MovieService {
+public abstract class MovieServiceImpl implements MovieService {
 
     @Autowired
     private MovieMapper movieMapper;
