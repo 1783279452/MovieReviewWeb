@@ -96,7 +96,7 @@ load()
  }
  const add=() =>{
      request.post('/comment/add',data.form).then(res =>{
-       if (res.code === '200'){
+       if (res.code === 200){
          load()
          data.formVisible = false
          ElMessage.success('操作成功')
@@ -112,7 +112,7 @@ load()
  }
  const update=() =>{
    request.put('/comment/update',data.form).then (res =>{
-     if (res.code === '200'){
+     if (res.code === 200){
        load()
        data.formVisible = false
        ElMessage.success('操作成功')
@@ -127,7 +127,7 @@ load()
  const del=(id) =>{
      ElMessageBox.confirm('删除数据后无法恢复，您确认吗？','确认删除',{type:'warning'}).then(res =>{
        request.delete('/comment/delete/' + id).then(res =>{
-         if (res.code === '200'){
+         if (res.code === 200){
            load()
            ElMessage.success('操作成功')
          }else {

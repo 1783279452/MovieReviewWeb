@@ -96,7 +96,7 @@ const handleEdit=(row) =>{
 }
 const update=() =>{
   request.put('/notice/update',data.form).then (res =>{
-    if (res.code === '200'){
+    if (res.code === 200 ){
       load()
       data.formVisible = false
       ElMessage.success('操作成功')

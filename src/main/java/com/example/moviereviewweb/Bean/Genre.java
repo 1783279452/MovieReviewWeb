@@ -18,7 +18,7 @@ public class Genre {//影视类型类
         genre_map.put(8, "犯罪");
     }
 
-    public static String getGenreNameById(Integer id){
+    public static String getCategoryNameById(Integer id){
         return genre_map.get(id);
     }
 }

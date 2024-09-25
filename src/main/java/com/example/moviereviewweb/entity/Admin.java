@@ -6,7 +6,7 @@ package com.example.moviereviewweb.entity;
 public class Admin extends Account {
 
     /** ID */
-    private Integer id;
+    private Integer uid;
     /** 用户名 */
     private String username;
     /** 密码 */
@@ -14,18 +14,18 @@ public class Admin extends Account {
     /** 姓名 */
     private String name;
     /** 头像 */
-    private String avatar;
+    private String avatarurl;
     /** 角色标识 */
     private String statu;
 
     @Override
     public Integer getId() {
-        return id;
+        return uid;
     }
 
     @Override
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer uid) {
+        this.uid = uid;
     }
 
     @Override
@@ -60,12 +60,12 @@ public class Admin extends Account {
 
     @Override
     public String getAvatar() {
-        return avatar;
+        return avatarurl;
     }
 
     @Override
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setAvatar(String avatarurl) {
+        this.avatarurl = avatarurl;
     }
 
     @Override

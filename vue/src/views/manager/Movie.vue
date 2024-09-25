@@ -46,7 +46,7 @@
            <el-date-picker style="width: 100%" type="date" v-model="data.form.ReleaseTime" autocomplete="off" placeholder="请输入上映年份" format="YYYY-MM-DD" value-foemat="YYYY-MM-DD" />
          </el-form-item>
          <el-form-item label="类型">
-           <el-input v-model="data.form.type" autocomplete="off" placeholder="请输入类型" />
+           <el-input v-model="data.form.category" autocomplete="off" placeholder="请输入类型" />
          </el-form-item>
          <el-form-item label="评分">
            <el-input v-model="data.form.M_score" autocomplete="off" placeholder="请输入评分" />
@@ -86,7 +86,7 @@
  )
 
  const load =() =>{
-   request.get('/movie/selectPage',{
+   request.get('/MultiMovie',{
      params :{
        pageNum:data.pageNum,
        pageSize:data.pageSize,

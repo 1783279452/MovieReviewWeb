@@ -43,7 +43,7 @@ const emit = defineEmits(["updateUser"])
 const save = () => {
   if (data.user.role === 'ADMIN') {
     request.put('/admin/update', data.user).then(res => {
-      if (res.code === '200') {
+      if (res.code === 200) {
         ElMessage.success('更新成功')
         //把更新后的用户信息存储到缓存
         localStorage.setItem('system-user', JSON.stringify(data.user))

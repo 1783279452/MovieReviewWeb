@@ -31,9 +31,9 @@ public class AdminController {
     /**
      * 删除
      */
-    @DeleteMapping("/delete/{id}")
-    public Result deleteById(@PathVariable Integer id) {
-        adminService.deleteById(id);
+    @DeleteMapping("/delete/{uid}")
+    public Result deleteById(@PathVariable Integer uid) {
+        adminService.deleteById(uid);
         return Result.success();
     }
 
@@ -49,9 +49,9 @@ public class AdminController {
     /**
      * 根据ID查询
      */
-    @GetMapping("/selectById/{id}")
-    public Result selectById(@PathVariable Integer id) {
-        Admin admin = adminService.selectById(id);
+    @GetMapping("/selectById/{uid}")
+    public Result selectById(@PathVariable Integer uid) {
+        Admin admin = adminService.selectById(uid);
         return Result.success(admin);
     }
 

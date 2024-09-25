@@ -11,8 +11,8 @@ public interface MovieMapper {
 
     /*@Insert("INSERT INTO moviereviewweb_database.movie (mid, name, imgurl, releasetime, type, m_score, language, summary) " +
             "VALUE (#{mid},#{name},#{imgUrl},#{releasetime},#{type},#{m_score},#{language},#{summary})")*/
-    @Insert("INSERT INTO movie (mid, name, imgurl, releasetime, type, m_score, language, summary) " +
-            "VALUE (#{MID},#{Name},#{imgUrl},#{ReleaseTime},#{type},#{M_score},#{language},#{summary})")
+    @Insert("INSERT INTO movie (mid, name, imgurl, releasetime, category, m_score, language, summary) " +
+            "VALUE (#{MID},#{Name},#{imgUrl},#{ReleaseTime},#{category},#{M_score},#{language},#{summary})")
     void addMovie(Movie movie);
 
     @Select("select count(*) from movie where mid = #{id}")

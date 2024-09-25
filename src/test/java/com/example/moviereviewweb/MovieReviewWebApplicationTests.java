@@ -14,7 +14,7 @@ class MovieReviewWebApplicationTests {
 
 
     public static void main(String[] args) {
-        System.out.println(Result.success(Genre.getGenreNameById(2)));
+        System.out.println(Result.success(Genre.getCategoryNameById(2)));
     }
 
 }

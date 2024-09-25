@@ -36,7 +36,7 @@ const save = () => {
     return
   }
   request.put('/updatePassword', data.user).then(res => {
-    if (res.code === '200') {
+    if (res.code === 200) {
       ElMessage.success('修改密码成功')
       // 清空缓存
       localStorage.removeItem('system-user')

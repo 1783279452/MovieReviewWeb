@@ -65,7 +65,7 @@ const loadFilmByCategory = (categoryId) => {
 }
 
 const load = () => {
-  request.get('/movie/selectPage', {
+  request.get('/MultiMovie', {
     params: {
       pageNum: data.pageNum,
       pageSize: data.pageSize,

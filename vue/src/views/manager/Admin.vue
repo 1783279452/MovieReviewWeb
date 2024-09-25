@@ -109,7 +109,7 @@ const handleEdit = (row) => {
 // 新增保存
 const add = () => {
   request.post('/admin/add', data.form).then(res => {
-    if (res.code === '200') {
+    if (res.code === 200 ) {
       load()
       ElMessage.success('操作成功')
       data.formVisible = false
@@ -122,7 +122,7 @@ const add = () => {
 // 编辑保存
 const update = () => {
   request.put('/admin/update', data.form).then(res => {
-    if (res.code === '200') {
+    if (res.code === 200 ) {
       load()
       ElMessage.success('操作成功')
       data.formVisible = false
@@ -139,10 +139,10 @@ const save = () => {
 }
 
 // 删除
-const handleDelete = (id) => {
+const handleDelete = (uid) => {
   ElMessageBox.confirm('删除后数据无法恢复，您确定删除吗?', '删除确认', { type: 'warning' }).then(res => {
-    request.delete('/admin/delete/' + id).then(res => {
-      if (res.code === '200') {
+    request.delete('/admin/delete/' + uid).then(res => {
+      if (res.code === 200 ) {
         load()
         ElMessage.success('操作成功')
       } else {

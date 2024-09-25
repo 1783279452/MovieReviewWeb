@@ -19,8 +19,8 @@ public interface AdminMapper {
     /**
       * 删除
     */
-    @Delete("delete from admin where id = #{id}")
-    int deleteById(Integer id);
+    @Delete("delete from admin where uid = #{uid}")
+    int deleteById(Integer uid);
 
     /**
       * 修改
@@ -30,8 +30,8 @@ public interface AdminMapper {
     /**
       * 根据ID查询
     */
-    @Select("select * from admin where id = #{id}")
-    Admin selectById(Integer id);
+    @Select("select * from admin where uid = #{uid}")
+    Admin selectById(Integer uid);
 
     /**
       * 查询所有

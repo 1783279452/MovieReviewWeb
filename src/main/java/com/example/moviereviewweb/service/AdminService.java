@@ -42,8 +42,8 @@ public class AdminService {
     /**
      * 删除
      */
-    public void deleteById(Integer id) {
-        adminMapper.deleteById(id);
+    public void deleteById(Integer uid) {
+        adminMapper.deleteById(uid);
     }
 
     /**
@@ -56,8 +56,8 @@ public class AdminService {
     /**
      * 根据ID查询
      */
-    public Admin selectById(Integer id) {
-        return adminMapper.selectById(id);
+    public Admin selectById(Integer uid) {
+        return adminMapper.selectById(uid);
     }
 
     /**

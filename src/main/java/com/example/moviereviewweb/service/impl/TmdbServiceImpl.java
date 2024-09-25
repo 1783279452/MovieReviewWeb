@@ -38,8 +38,8 @@ public class TmdbServiceImpl implements TmdbService {//TMDB搜索数据处理
     private static final String MultiSearch = "search/multi?";//聚合搜索
     private static final String MovieSearch = "search/movie?";//电影搜索
     private static final String TvSearch = "search/tv?";//电视剧TV搜索
-    private static final String TMDB_APIkey = "api_key=d3459ceb989dbc69c664097b38e0c1ae";//tmdb key
-    private static final String TMDB_APIkey2 = "api_key=2b43db98ecabe3ad71c5cf9d236a93f9";
+    private static final String TMDB_APIkey2 = "api_key=d3459ceb989dbc69c664097b38e0c1ae";//tmdb key
+    private static final String TMDB_APIkey = "api_key=2b43db98ecabe3ad71c5cf9d236a93f9";
     //2b43db98ecabe3ad71c5cf9d236a93f9
     private static final String Language = "&language=zh-CN";//语言
     private static final String TMDB_HotMovies = "https://api.themoviedb.org/3/movie/popular?api_key=";//当前所有热门电影
@@ -63,7 +63,7 @@ public class TmdbServiceImpl implements TmdbService {//TMDB搜索数据处理
         String posterPathPattern = "\"poster_path\":\\s*\"([^\"]+)\"";
         String releaseDatePattern = "\"release_date\":\\s*\"([^\"]+)\"";//电影
         String firstAirDatePattern = "\"first_air_date\":\\s*\"([^\"]+)\"";//电视剧
-        String genreIdsPattern = "\"genre_ids\":\\s*\\[([\\d,\\s]+)\\]";
+        String categoryIdsPattern = "\"category_ids\":\\s*\\[([\\d,\\s]+)\\]";
         String voteAveragePattern = "\"vote_average\":\\s*([0-9.]+)";
         String languagePattern = "\"original_language\":\\s*\"([^\"]+)\"";
         String overviewPattern = "\"overview\":\\s*\"([^\"]+)\"";
@@ -76,7 +76,7 @@ public class TmdbServiceImpl implements TmdbService {//TMDB搜索数据处理
         Matcher posterPathMatcher = Pattern.compile(posterPathPattern).matcher(HTTPinfo);
         Matcher releaseDateMatcher = Pattern.compile(releaseDatePattern).matcher(HTTPinfo);
         Matcher firstAirDateMatcher = Pattern.compile(firstAirDatePattern).matcher(HTTPinfo);
-        Matcher genreIdsMatcher = Pattern.compile(genreIdsPattern).matcher(HTTPinfo);
+        Matcher categoryIdsMatcher = Pattern.compile(categoryIdsPattern).matcher(HTTPinfo);
         Matcher voteAverageMatcher = Pattern.compile(voteAveragePattern).matcher(HTTPinfo);
         Matcher languageMatcher = Pattern.compile(languagePattern).matcher(HTTPinfo);
         Matcher overviewMatcher = Pattern.compile(overviewPattern).matcher(HTTPinfo);
@@ -91,7 +91,7 @@ public class TmdbServiceImpl implements TmdbService {//TMDB搜索数据处理
                 String posterPath = posterPathMatcher.find() ? posterPathMatcher.group(1) : null;
                 String language = languageMatcher.find() ? languageMatcher.group(1) : null;
                 String overview = overviewMatcher.find() ? overviewMatcher.group(1) : null;
-                String genres = genreIdsMatcher.find() ? genreIdsMatcher.group(1) : null;
+                String category = categoryIdsMatcher.find() ? categoryIdsMatcher.group(1) : null;
                 String voteAverage = voteAverageMatcher.find() ? voteAverageMatcher.group(1) : "0";
 
                 // 如果是电影
@@ -104,7 +104,7 @@ public class TmdbServiceImpl implements TmdbService {//TMDB搜索数据处理
                     movie.setName(title);
                     movie.setImgUrl(posterPath);
                     movie.setReleaseTime(releaseDate);
-                    movie.setType(genres);
+                    movie.setCategory(category);
                     movie.setM_score(Float.valueOf(voteAverage));
                     movie.setLanguage(language);
                     movie.setSummary(overview);
@@ -132,7 +132,7 @@ public class TmdbServiceImpl implements TmdbService {//TMDB搜索数据处理
                     tv.setName(name);
                     tv.setImgUrl(posterPath);
                     tv.setReleaseTime(firstAirDate);
-                    tv.setType(genres);
+                    tv.setType(category);
                     tv.setT_score(Float.valueOf(voteAverage));
                     tv.setLanguage(language);
                     tv.setSummary(overview);

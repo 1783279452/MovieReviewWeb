@@ -9,17 +9,17 @@
         <where>
             <if test="name != null"> and name like concat('%', #{name}, '%')</if>
         </where>
-        order by id desc
+        order by uid desc
     </select>
 
     <insert id="insert" parameterType="com.example.moviereviewweb.entity.Admin" useGeneratedKeys="true">
-        insert into admin(id, username, password, name, avatar, statu)
-        values (#{id}, #{username}, #{password}, #{name}, #{avatar}, #{statu})
+        insert into admin(uid, username, password, name, avataurl, statu)
+        values (#{uid}, #{username}, #{password}, #{name}, #{avatarurl}, #{statu})
     </insert>
 
     <update id="updateById" parameterType="com.example.moviereviewweb.entity.Admin">
-        update admin set username = #{username}, password = #{password}, name = #{name}, avatar = #{avatar}, statu = #{statu}
-        where id = #{id} 
+        update admin set username = #{username}, password = #{password}, name = #{name}, avatarurl = #{avatarurl}, statu = #{statu}
+        where uid = #{uid}
     </update>
 
 </mapper>
